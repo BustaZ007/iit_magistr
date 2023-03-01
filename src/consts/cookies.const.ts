@@ -1,0 +1,4 @@
+const IS_ASIDE_OPEN_COOKIE_NAME = 'aside';
+const IS_AGENTS_MESSAGE_SHOWED = 'showed_message';
+
+export { IS_ASIDE_OPEN_COOKIE_NAME, IS_AGENTS_MESSAGE_SHOWED };

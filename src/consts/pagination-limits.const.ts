@@ -1,0 +1,11 @@
+export enum PaginationLimits {
+  PUSH_NOTIFICATIONS = 1,
+  AGENTS = 30,
+  PROFILES = 30,
+  HISTORY = 10,
+  SYSTEM_NOTIFICATIONS = 15,
+  GROUPS = 15,
+  ACTIVITIES = 30,
+  TRIGGERS = 30,
+  ENDPOINTS = 30,
+}

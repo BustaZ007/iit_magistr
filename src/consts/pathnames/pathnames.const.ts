@@ -1,0 +1,26 @@
+export const PATHNAMES = {
+  sign_in: '/sign-in',
+  sign_up: '/sign-up',
+  email_confirm: '/email-confirm/',
+  email_success: '/email-confirm/success',
+  recovery: '/password-recovery/',
+  recovery_success: '/password-recovery/success',
+  recovery_new: '/password-recovery/new/',
+  recovery_new_success: '/password-recovery/new/success',
+  // Entity Pages
+  workspaces: '/workspaces',
+  dashboard: '/',
+  notifications: '/notifications/',
+  persons: '/persons/',
+  activities: '/activities',
+  billing: '/billing',
+  // Settings Pages
+  settings: '/settings/',
+  settings_groups: '/settings/groups',
+  settings_agents: '/settings/agents',
+  settings_general: '/settings/general',
+  settings_triggers: '/settings/triggers',
+  settings_endpoints: '/settings/endpoints',
+  settings_fields: '/settings/fields',
+  settings_integration: '/settings/integration',
+};

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="56px" height="56px" viewBox="0 0 56 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>_4</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="2" transform="translate(-581.000000, -612.000000)">
+            <g id="_4" transform="translate(581.000000, 612.000000)">
+                <rect id="Rectangle" stroke-opacity="0.08" stroke="#FFFFFF" x="0.5" y="0.5" width="55" height="55" rx="6"></rect>
+                <g id="Group" opacity="0.24" transform="translate(12.000000, 12.000000)">
+                    <rect id="Rectangle" x="0" y="0" width="32" height="32"></rect>
+                    <circle id="Oval" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" cx="9.5" cy="22.5" r="3.5"></circle>
+                    <circle id="Oval" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" cx="22.5" cy="22.5" r="3.5"></circle>
+                    <line x1="13" y1="22.5" x2="19" y2="22.5" id="Path" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round"></line>
+                    <line x1="1" y1="15" x2="31" y2="15" id="Path" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round"></line>
+                    <path d="M5,15 L11.1625,6.2 C11.3509884,5.92923624 11.6608937,5.7688614 11.9907946,5.77133186 C12.3206956,5.7738599 12.6281355,5.93891159 12.8125,6.2125 L15.1625,9.75 C15.3471206,10.0329596 15.6621377,10.2035627 16,10.2035627 C16.3378623,10.2035627 16.6528794,10.0329596 16.8375,9.75 L19.1875,6.2125 C19.3718645,5.93891159 19.6793044,5.7738599 20.0092054,5.77133186 C20.3391063,5.7688614 20.6490116,5.92923624 20.8375,6.2 L27,15" id="Path" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

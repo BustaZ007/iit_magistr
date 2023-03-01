@@ -1,10 +1,8 @@
-import { Flex, Heading, useColorModeValue } from '@chakra-ui/react';
-import { useTranslation } from 'react-i18next';
+import { Flex, Heading, useColorModeValue } from "@chakra-ui/react";
 
 function EntitiesSection() {
-  const { t } = useTranslation('pages');
-  const borderColor = useColorModeValue('gray.200', 'gray.600');
-  const bg = useColorModeValue('gray.100', 'gray.700');
+  const borderColor = useColorModeValue("gray.200", "gray.600");
+  const bg = useColorModeValue("gray.100", "gray.700");
 
   return (
     <Flex
@@ -13,7 +11,7 @@ function EntitiesSection() {
       pr={4}
       py="2"
       bg={bg}
-      w={{ base: '150px', lg: '200px' }}
+      w={{ base: "150px", lg: "200px" }}
       flexShrink={0}
       borderBottom="1px"
       borderColor={borderColor}
@@ -27,7 +25,7 @@ function EntitiesSection() {
         fontWeight="semibold"
         overflow="visible"
       >
-        {t('Settings.Title')}
+        Settings.Title
       </Heading>
     </Flex>
   );

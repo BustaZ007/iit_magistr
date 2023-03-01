@@ -1,3 +1,3 @@
-import { LinksElement } from './links/links.element';
+import { LinksElement } from "./links/links.element";
 
 export { LinksElement };

@@ -1,15 +1,5 @@
-import { Filters } from './filters';
-import HeaderModule from './header/header.component';
-import Pagination from './pagination/pagination.module';
-import AccountButtonModule from './account-button/account-button.module';
-import LicenseAlert from './license-alert.module';
-import ActivitiesTable from './activities-table';
+import HeaderModule from "./header/header.component";
+import Pagination from "./pagination/pagination.module";
+import AccountButtonModule from "./account-button/account-button.module";
 
-export {
-  AccountButtonModule,
-  HeaderModule,
-  Pagination,
-  Filters,
-  LicenseAlert,
-  ActivitiesTable,
-};
+export { AccountButtonModule, HeaderModule, Pagination };

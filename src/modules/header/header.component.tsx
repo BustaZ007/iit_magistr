@@ -1,19 +1,13 @@
-import { ColorModeSwitcher } from '@3divi/shared-components';
-import { Box, Flex, ButtonGroup, useColorModeValue } from '@chakra-ui/react';
-import { useLocation } from 'react-router-dom';
-import { AccountButtonModule } from '..';
-import { PATHNAMES } from '../../consts';
-import EntitiesSection from './entities-section.component';
-import HeaderButtons from './header-buttons.component';
-import TitleElement from './title.element';
+import { Box, Flex, ButtonGroup, useColorModeValue } from "@chakra-ui/react";
+import { AccountButtonModule } from "..";
+import { ColorModeSwitcher } from "../../elements";
+import TitleElement from "./title.element";
 
 function HeaderModule() {
-  const borderColor = useColorModeValue('gray.100', 'gray.700');
-  const { pathname } = useLocation();
+  const borderColor = useColorModeValue("gray.100", "gray.700");
 
   return (
     <>
-      {pathname.includes(PATHNAMES.settings) ? <EntitiesSection /> : null}
       <Box
         flexGrow={1}
         flexShrink={1}
@@ -27,7 +21,6 @@ function HeaderModule() {
           </Box>
           <ButtonGroup flexShrink={0} spacing="2" pl="4">
             <ColorModeSwitcher />
-            <HeaderButtons />
           </ButtonGroup>
         </Flex>
       </Box>

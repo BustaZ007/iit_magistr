@@ -12,31 +12,28 @@ import {
   InputLeftElement,
   InputRightElement,
   Stack,
-} from '@chakra-ui/react';
-import { Eye, EyeClosed, LockKey, Repeat } from 'phosphor-react';
-import { useFormik } from 'formik';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { VALIDATION_SCHEMAS } from '../../consts';
-import { useChangePassword } from '../../domains/user';
+} from "@chakra-ui/react";
+import { Eye, EyeClosed, LockKey, Repeat } from "phosphor-react";
+import { useFormik } from "formik";
+import { useState } from "react";
+import { VALIDATION_SCHEMAS } from "../../consts";
 
 type TChangePasswordFormModule = {
   onClose: () => void;
 };
 
 function ChangePasswordFormModule({ onClose }: TChangePasswordFormModule) {
-  const { t } = useTranslation('components');
   const [showPassword, setShowPasswordStatus] = useState<boolean>(false);
-  const { changePassword, loading, error } = useChangePassword(onClose);
   const formik = useFormik({
     initialValues: {
-      oldPassword: '',
-      newPassword: '',
-      confirmNewPassword: '',
+      oldPassword: "",
+      newPassword: "",
+      confirmNewPassword: "",
     },
     validationSchema: VALIDATION_SCHEMAS.changePassword,
     onSubmit: (values) => {
-      changePassword(values);
+      console.log("changePassword", values);
+      onClose();
     },
   });
 
@@ -48,13 +45,10 @@ function ChangePasswordFormModule({ onClose }: TChangePasswordFormModule) {
     <form onSubmit={formik.handleSubmit} id="change-password-submit-form">
       <Stack spacing={4}>
         <FormControl
-          isInvalid={
-            (formik.touched.oldPassword && !!formik.errors.oldPassword) ||
-            !!error
-          }
+          isInvalid={formik.touched.oldPassword && !!formik.errors.oldPassword}
         >
           <FormLabel htmlFor="current-password" fontSize="sm">
-            {t('Modal.ChangePassword.CurrentPasswordLabel')}
+            Modal.ChangePassword.CurrentPasswordLabel
           </FormLabel>
           <InputGroup size="md">
             <InputLeftElement pointerEvents="none">
@@ -63,7 +57,7 @@ function ChangePasswordFormModule({ onClose }: TChangePasswordFormModule) {
             <Input
               size="md"
               id="current-password"
-              type={showPassword ? 'text' : 'password'}
+              type={showPassword ? "text" : "password"}
               onChange={formik.handleChange}
               name="oldPassword"
               value={formik.values.oldPassword}
@@ -74,7 +68,7 @@ function ChangePasswordFormModule({ onClose }: TChangePasswordFormModule) {
                 size="sm"
                 onClick={handleChangeShowPasswordStatus}
                 variant="ghost"
-                aria-label={showPassword ? 'Mask password' : 'Reveal password'}
+                aria-label={showPassword ? "Mask password" : "Reveal password"}
                 icon={
                   showPassword ? (
                     <Icon as={Eye} w="5" h="5" />
@@ -85,17 +79,15 @@ function ChangePasswordFormModule({ onClose }: TChangePasswordFormModule) {
               />
             </InputRightElement>
           </InputGroup>
-          {(formik.errors.oldPassword || !!error) && (
-            <FormErrorMessage>
-              {t(`errors.${formik.errors.oldPassword ?? error?.message ?? ''}`)}
-            </FormErrorMessage>
+          {formik.errors.oldPassword && (
+            <FormErrorMessage>{formik.errors.oldPassword}</FormErrorMessage>
           )}
         </FormControl>
         <FormControl
           isInvalid={formik.touched.newPassword && !!formik.errors.newPassword}
         >
           <FormLabel htmlFor="new-password" fontSize="sm">
-            {t('Modal.ChangePassword.NewPasswordLabel')}
+            Modal.ChangePassword.NewPasswordLabel
           </FormLabel>
           <InputGroup size="md">
             <InputLeftElement pointerEvents="none">
@@ -106,16 +98,14 @@ function ChangePasswordFormModule({ onClose }: TChangePasswordFormModule) {
               id="new-password"
               name="newPassword"
               value={formik.values.newPassword}
-              type={showPassword ? 'text' : 'password'}
+              type={showPassword ? "text" : "password"}
               onChange={formik.handleChange}
             />
           </InputGroup>
           {formik.touched.newPassword && !!formik.errors.newPassword ? (
-            <FormErrorMessage>
-              {t(`components:errors.${formik.errors.newPassword}`)}
-            </FormErrorMessage>
+            <FormErrorMessage>{formik.errors.newPassword}</FormErrorMessage>
           ) : (
-            <FormHelperText>{t('components:errors.Minimum')}</FormHelperText>
+            <FormHelperText>components:errors.Minimum</FormHelperText>
           )}
         </FormControl>
         <FormControl
@@ -125,7 +115,7 @@ function ChangePasswordFormModule({ onClose }: TChangePasswordFormModule) {
           }
         >
           <FormLabel htmlFor="repassword" fontSize="sm">
-            {t('Modal.ChangePassword.RepeatPasswordLabel')}
+            Modal.ChangePassword.RepeatPasswordLabel
           </FormLabel>
           <InputGroup size="md">
             <InputLeftElement pointerEvents="none">
@@ -133,7 +123,7 @@ function ChangePasswordFormModule({ onClose }: TChangePasswordFormModule) {
             </InputLeftElement>
             <Input
               size="md"
-              type={showPassword ? 'text' : 'password'}
+              type={showPassword ? "text" : "password"}
               name="confirmNewPassword"
               value={formik.values.confirmNewPassword}
               onChange={formik.handleChange}
@@ -142,19 +132,19 @@ function ChangePasswordFormModule({ onClose }: TChangePasswordFormModule) {
           </InputGroup>
           {!!formik.errors.confirmNewPassword && (
             <FormErrorMessage>
-              {t(`errors.${formik.errors.confirmNewPassword}`)}
+              {formik.errors.confirmNewPassword}
             </FormErrorMessage>
           )}
         </FormControl>
         <Box py="2">
           <Button
-            isLoading={loading}
+            isLoading={false}
             type="submit"
             size="md"
-            loadingText={t('Modal.ChangePassword.Button')}
+            loadingText="Modal.ChangePassword.Button"
             colorScheme="blue"
           >
-            {t('Modal.ChangePassword.Button')}
+            Button
           </Button>
         </Box>
       </Stack>

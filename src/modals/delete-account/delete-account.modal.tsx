@@ -8,12 +8,9 @@ import {
   InputLeftElement,
   Text,
   useClipboard,
-} from '@chakra-ui/react';
-import { PaperPlaneTilt, Trash } from 'phosphor-react';
-
-import { useTranslation } from 'react-i18next';
-import { ModalBlock } from '../../blocks';
-import { Mails } from '../../consts';
+} from "@chakra-ui/react";
+import { PaperPlaneTilt, Trash } from "phosphor-react";
+import { ModalBlock } from "../../blocks";
 
 type TDeleteAccountModal = {
   isOpen: boolean;
@@ -21,18 +18,16 @@ type TDeleteAccountModal = {
 };
 
 function DeleteAccountModal({ isOpen, onClose }: TDeleteAccountModal) {
-  const { t } = useTranslation('components');
-
-  const { hasCopied, onCopy } = useClipboard(Mails.SUPPORT);
+  const { hasCopied, onCopy } = useClipboard("pp@pp.ru");
 
   return (
     <ModalBlock
       isOpen={isOpen}
       onClose={onClose}
       icon={Trash}
-      title={t('Modal.DeleteAccount.Title')}
+      title="Modal.DeleteAccount.Title"
     >
-      <Text>{t('Modal.DeleteAccount.Message')}</Text>
+      <Text>Modal.DeleteAccount.Message</Text>
       <HStack spacing={2} w="100%">
         <InputGroup size="md">
           <InputLeftElement pointerEvents="none">
@@ -41,7 +36,7 @@ function DeleteAccountModal({ isOpen, onClose }: TDeleteAccountModal) {
           <Input
             flexShrink={1}
             isReadOnly
-            value={Mails.SUPPORT}
+            value="pp@pp.ru"
             id="key"
             type="text"
           />
@@ -55,7 +50,7 @@ function DeleteAccountModal({ isOpen, onClose }: TDeleteAccountModal) {
           autoFocus
           id="copy-email-delete-account-button"
         >
-          {t(`common:${hasCopied ? 'Copied' : 'CopyEmail'}`)}
+          {hasCopied ? "Copied" : "CopyEmail"}
         </Button>
       </HStack>
       <ButtonGroup spacing="2" py="2">
@@ -64,15 +59,15 @@ function DeleteAccountModal({ isOpen, onClose }: TDeleteAccountModal) {
           onClick={onClose}
           id="cancel-account-delete-button"
         >
-          {t('Modal.Letter.CloseButton')}
+          Modal.Letter.CloseButton
         </Button>
         <Button
           as="a"
-          href={`mailto:${Mails.SUPPORT}`}
+          href="mailto:pp@pp.ru"
           fontWeight="normal"
           id="write-letter-delete-account-button"
         >
-          {t('Modal.Letter.WriteButton')}
+          Modal.Letter.WriteButton
         </Button>
       </ButtonGroup>
     </ModalBlock>

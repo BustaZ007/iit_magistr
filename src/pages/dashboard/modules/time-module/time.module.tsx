@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { Text } from '@chakra-ui/react';
-import { getCurrentTime } from '../../helpers';
+import { useState, useEffect } from "react";
+import { Text } from "@chakra-ui/react";
+import { getCurrentTime } from "../../helpers";
 
 export function TimeModule() {
   const [currentTime, setCurrentTime] = useState<string>(getCurrentTime());

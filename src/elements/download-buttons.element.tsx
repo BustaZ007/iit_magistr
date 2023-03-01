@@ -1,7 +1,7 @@
-import { Box, Button, HStack, Icon, Text } from '@chakra-ui/react';
-import { LinuxLogo, WindowsLogo } from 'phosphor-react';
-import { useLocation } from 'react-router-dom';
-import { LinksOnExternalSources } from '../consts';
+import { Box, Button, HStack, Icon, Text } from "@chakra-ui/react";
+import { LinuxLogo, WindowsLogo } from "phosphor-react";
+import { useLocation } from "react-router-dom";
+import { LinksOnExternalSources } from "../consts";
 
 type TDownloadButtonsElement = {
   handleClick?: () => void;
@@ -10,7 +10,7 @@ type TDownloadButtonsElement = {
 function DownloadButtonsElement({ handleClick }: TDownloadButtonsElement) {
   const location = useLocation();
   const pageName =
-    location.pathname.slice(1, location.pathname.length - 1) ?? 'dashboard'; // Взять имя страницы без /
+    location.pathname.slice(1, location.pathname.length - 1) ?? "dashboard"; // Взять имя страницы без /
 
   return (
     <HStack spacing="2" w="100%">

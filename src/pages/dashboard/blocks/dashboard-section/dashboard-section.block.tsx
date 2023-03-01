@@ -8,8 +8,8 @@ import {
   Heading,
   Spinner,
   As,
-} from '@chakra-ui/react';
-import { ReactNode } from 'react';
+} from "@chakra-ui/react";
+import { ReactNode } from "react";
 
 type TDashboardSectionBlock = Partial<{
   icon: As<any>;
@@ -26,9 +26,9 @@ export function DashboardSectionBlock({
 }: TDashboardSectionBlock) {
   return (
     <Box
-      bg={useColorModeValue('white', 'gray.700')}
+      bg={useColorModeValue("white", "gray.700")}
       borderRadius="lg"
-      boxShadow={useColorModeValue('sm', 'sm-dark')}
+      boxShadow={useColorModeValue("sm", "sm-dark")}
       w="100%"
     >
       <HStack spacing="3" px="6" py="4">

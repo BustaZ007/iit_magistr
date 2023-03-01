@@ -1,58 +1,37 @@
-import { BracketsCurly, Files, ImageSquare, Link } from 'phosphor-react';
-import { useTranslation } from 'react-i18next';
-import {
-  useCustomQuery,
-  isOnPremise,
-  workspaceVar,
-  workspaceVar as currentWorkspace,
-} from '@3divi/shared-components';
-import { SectionButtonBlock, DashboardSectionBlock } from '../../blocks';
+import { BracketsCurly, Files, ImageSquare, Link } from "phosphor-react";
+import { SectionButtonBlock, DashboardSectionBlock } from "../../blocks";
 
-import { LinksOnExternalSources } from '../../../../consts';
-import {
-  GET_WORKSPACES,
-  TWorkspacesCollection,
-} from '../../../../domains/workspaces';
-import { CopyToken } from './copy-token.element';
+import { LinksOnExternalSources } from "../../../../consts";
+import { CopyToken } from "./copy-token.element";
 
 export function LinksElement() {
-  const { t } = useTranslation('pages');
-  const { data } = useCustomQuery<TWorkspacesCollection>(GET_WORKSPACES, {
-    fetchPolicy: 'cache-and-network',
-    nextFetchPolicy: 'cache-only',
-  });
-
-  const authorizeToken =
-    data?.workspaces.find((workspace) => workspace.id === workspaceVar())
-      ?.accesses[0].token ?? '';
+  const authorizeToken = "authorizeToken";
 
   return (
-    <DashboardSectionBlock icon={Link} title={t('Dashboard.Resources')}>
-      {!isOnPremise() && (
-        <SectionButtonBlock
-          id="docs-link-dashboard"
-          icon={Files}
-          title={t('Dashboard.TopWidgets.Docs')}
-          subtitle={t('Dashboard.CompleteGuide')}
-          url={LinksOnExternalSources.DOCUMENTATION}
-        />
-      )}
+    <DashboardSectionBlock icon={Link} title="Dashboard.Resources">
+      <SectionButtonBlock
+        id="docs-link-dashboard"
+        icon={Files}
+        title="Dashboard.TopWidgets.Docs"
+        subtitle="Dashboard.CompleteGuide"
+        url={LinksOnExternalSources.DOCUMENTATION}
+      />
 
       {authorizeToken && <CopyToken authorizeToken={authorizeToken} />}
 
       <SectionButtonBlock
         id="api-link-dashboard"
         icon={BracketsCurly}
-        title={t('Dashboard.TopWidgets.PlatformApi')}
-        subtitle={t('Dashboard.Widgets.PlatformAPI.Description')}
-        url={`${LinksOnExternalSources.PLATFORM_API}${currentWorkspace()}`}
+        title="Dashboard.TopWidgets.PlatformApi"
+        subtitle="Dashboard.Widgets.PlatformAPI.Description"
+        url={`${LinksOnExternalSources.PLATFORM_API}}`}
       />
 
       <SectionButtonBlock
         id="image-api-link-dashboard"
         icon={ImageSquare}
-        title={t('Dashboard.TopWidgets.ImageApi')}
-        subtitle={t('Dashboard.Widgets.ImageAPI.Description')}
+        title="Dashboard.TopWidgets.ImageApi"
+        subtitle="Dashboard.Widgets.ImageAPI.Description"
         url={LinksOnExternalSources.IMAGE_API}
       />
     </DashboardSectionBlock>

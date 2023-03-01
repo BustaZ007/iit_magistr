@@ -5,10 +5,9 @@ import {
   HStack,
   Icon,
   Text,
-} from '@chakra-ui/react';
-import { useTranslation } from 'react-i18next';
-import { range } from 'lodash';
-import { CaretLeft, CaretRight } from 'phosphor-react';
+} from "@chakra-ui/react";
+import { range } from "lodash";
+import { CaretLeft, CaretRight } from "phosphor-react";
 
 type TPaginationProps = {
   page: number;
@@ -27,7 +26,6 @@ function Pagination({
   maxPaginationButton,
   shouldBeInTwoLines,
 }: TPaginationProps) {
-  const { t } = useTranslation('common');
   const totalPagesCount = Math.ceil(totalCount / limit);
   const buttonStep = Math.floor(maxPaginationButton / 2);
 
@@ -69,9 +67,9 @@ function Pagination({
       mr="-px"
       fontWeight="normal"
       cursor="default"
-      _hover={{ bg: 'none' }}
-      _active={{ bg: 'none' }}
-      _focus={{ bg: 'none' }}
+      _hover={{ bg: "none" }}
+      _active={{ bg: "none" }}
+      _focus={{ bg: "none" }}
     >
       ...
     </Button>
@@ -92,11 +90,11 @@ function Pagination({
                 pl={2}
                 mr="-px"
               >
-                {t('Back')}
+                Back
               </Button>
 
               <Button
-                variant={page === 1 ? 'solid' : 'outline'}
+                variant={page === 1 ? "solid" : "outline"}
                 mr="-px"
                 fontWeight="normal"
                 onClick={handleOnPageButtonClick(1)}
@@ -113,7 +111,7 @@ function Pagination({
                   !!item && (
                     <Button
                       key={item}
-                      variant={page === item ? 'solid' : 'outline'}
+                      variant={page === item ? "solid" : "outline"}
                       mr="-px"
                       fontWeight="normal"
                       onClick={handleOnPageButtonClick(item)}
@@ -128,7 +126,7 @@ function Pagination({
                 emptyButton}
 
               <Button
-                variant={page === totalPagesCount ? 'solid' : 'outline'}
+                variant={page === totalPagesCount ? "solid" : "outline"}
                 mr="-px"
                 fontWeight="normal"
                 onClick={handleOnPageButtonClick(totalPagesCount)}
@@ -144,26 +142,21 @@ function Pagination({
                 rightIcon={<Icon as={CaretRight} />}
                 pr={2}
               >
-                {t('Next')}
+                Next
               </Button>
             </ButtonGroup>
           )}
         </HStack>
         {!shouldBeInTwoLines && (
           <Text fontSize="md" color="gray.400" fontWeight="normal" pr={6}>
-            {t('components:Pagination.EntitiesViewed.Full', {
-              viewed: viewedText,
-              totalCount,
-            })}
+            components:Pagination.EntitiesViewed.Full
           </Text>
         )}
       </Flex>
       {shouldBeInTwoLines && (
         <Text fontSize="md" color="gray.400" fontWeight="normal" pl={6} py={4}>
-          {t('components:Pagination.EntitiesViewed.Full', {
-            viewed: viewedText,
-            totalCount,
-          })}
+          components:Pagination.EntitiesViewed.Full {viewedText}
+          {totalCount}
         </Text>
       )}
     </>

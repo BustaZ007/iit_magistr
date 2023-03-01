@@ -8,8 +8,8 @@ import {
   ModalContent,
   ModalOverlay,
   Stack,
-} from '@chakra-ui/react';
-import { ReactNode } from 'react';
+} from "@chakra-ui/react";
+import { ReactNode } from "react";
 
 type TModal = {
   isOpen: boolean;

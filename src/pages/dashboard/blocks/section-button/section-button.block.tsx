@@ -5,8 +5,8 @@ import {
   HStack,
   Icon,
   As,
-} from '@chakra-ui/react';
-import { ReactNode } from 'react';
+} from "@chakra-ui/react";
+import { ReactNode } from "react";
 
 type TSectionButtonBlock = {
   title: string;
@@ -36,12 +36,12 @@ export function SectionButtonBlock({
       w="100%"
       border="1px"
       borderRadius="lg"
-      borderColor={useColorModeValue('gray.200', 'whiteAlpha.300')}
+      borderColor={useColorModeValue("gray.200", "whiteAlpha.300")}
       _hover={{
-        background: useColorModeValue('gray.100', 'whiteAlpha.200'),
-        cursor: 'pointer',
+        background: useColorModeValue("gray.100", "whiteAlpha.200"),
+        cursor: "pointer",
       }}
-      pointerEvents={!url || isDisabled ? 'none' : undefined}
+      pointerEvents={!url || isDisabled ? "none" : undefined}
       opacity={!url || isDisabled ? 0.48 : undefined}
     >
       <Box px="4" py="3">

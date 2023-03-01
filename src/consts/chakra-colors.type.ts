@@ -1,4 +1,4 @@
-import { theme } from '@chakra-ui/react';
+import { theme } from "@chakra-ui/react";
 
 type TChakraColors = keyof typeof theme.colors;
 type TCodeSequence =

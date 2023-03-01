@@ -6,84 +6,62 @@ import {
   HStack,
   Divider,
   VStack,
-} from '@chakra-ui/react';
-import {
-  formatNumber,
-  isOnPremise,
-  useCustomQuery,
-} from '@3divi/shared-components';
-import { Activity, BellRinging, Cpu, Users } from 'phosphor-react';
-import { useTranslation } from 'react-i18next';
+} from "@chakra-ui/react";
+import { Activity, BellRinging, Cpu, Users } from "phosphor-react";
 import {
   AnalyticsModule,
   GettingStartedModule,
   SplitModule,
   StatusModule,
   TimeModule,
-} from './modules';
-import { LinksElement } from './elements';
-import { GET_DASHBOARD_INFO, TDashboardInfo } from './requests';
-import EntityCountBanner from '../../elements/entity-count-banner.element';
-import { PATHNAMES } from '../../consts';
-import { useGetUnreadNotificationsCount } from '../../domains/endpoints';
+} from "./modules";
+import { LinksElement } from "./elements";
+import EntityCountBanner from "../../elements/entity-count-banner.element";
+import { PATHNAMES } from "../../consts";
 
 export function DashboardPage() {
-  const { t } = useTranslation('pages');
-  const bg = useColorModeValue('gray.100', 'transparent');
-  const borderColor = useColorModeValue('gray.200', 'whiteAlpha.300');
-  const { notificationsCount } = useGetUnreadNotificationsCount('cache-only');
-  const { data, loading, error } = useCustomQuery<TDashboardInfo>(
-    GET_DASHBOARD_INFO,
-    {
-      isPolling: true,
-    }
-  );
-  const activitiesCount = data?.activitiesCount?.totalCount ?? 0;
-  const agentsCount = data?.agentsCount?.totalCount ?? 0;
-  const inactiveAgentsCount = data?.inactiveAgentsCount?.totalCount ?? 0;
-  const activeAgentsCount = data?.activeAgentsCount?.totalCount ?? 0;
-  const profilesCount = data?.profilesCount?.totalCount ?? 0;
+  const bg = useColorModeValue("gray.100", "transparent");
+  const borderColor = useColorModeValue("gray.200", "whiteAlpha.300");
+  const activitiesCount = 0;
+  const agentsCount = 0;
+  const activeAgentsCount = 0;
+  const profilesCount = 0;
+  const notificationsCount = 0;
 
   return (
     <Box h="100%" w="100%" overflowY="auto" bg={bg}>
-      <Box as="section" py={{ base: '4', md: '8' }}>
+      <Box as="section" py={{ base: "4", md: "8" }}>
         <Container maxW="container.xl">
           <VStack spacing="8" align="stretch">
             <SimpleGrid
               columns={{ base: 1, md: 2, lg: 2, xl: 4 }}
-              gap={{ base: '4', md: '6' }}
+              gap={{ base: "4", md: "6" }}
               alignItems="flex-start"
             >
               <EntityCountBanner
-                link={PATHNAMES.settings_agents}
+                link={PATHNAMES.dashboard}
                 count={agentsCount}
                 icon={Cpu}
-                label={t('Dashboard.NuitrackAgents')}
-                tag={
-                  inactiveAgentsCount
-                    ? `${formatNumber(inactiveAgentsCount)} ${t(
-                        'Dashboard.TopWidgets.Agents.Stopped'
-                      )}`
-                    : undefined
-                }
+                label="Dashboard.NuitrackAgents"
+                tag="Dashboard.TopWidgets.Agents.Stopped"
               />
               <EntityCountBanner
-                link={PATHNAMES.activities}
+                link={PATHNAMES.dashboard}
                 count={activitiesCount}
                 icon={Activity}
-                label={t('Dashboard.Activities')}
+                label="Dashboard.Activities"
               />
               <EntityCountBanner
-                link={PATHNAMES.notifications}
+                link={PATHNAMES.dashboard}
                 count={notificationsCount}
                 icon={BellRinging}
-                label={t('Dashboard.Notifications')}
+                label="Dashboard.Notifications"
               />
               <EntityCountBanner
-                link={PATHNAMES.persons}
+                link={PATHNAMES.dashboard}
                 count={profilesCount}
                 icon={Users}
-                label={t('Dashboard.Profiles')}
+                label="Dashboard.Profiles"
               />
             </SimpleGrid>
             <HStack spacing="0">
@@ -100,22 +78,13 @@ export function DashboardPage() {
             </HStack>
             <SimpleGrid
               columns={{ base: 1, md: 2 }}
-              gap={{ base: '5', md: '6' }}
+              gap={{ base: "5", md: "6" }}
               alignItems="flex-start"
             >
-              {(loading || !!error) && !data && (
-                <SplitModule isLoading={loading} isError={!!error} />
-              )}
-              {!!data &&
-                (activitiesCount ? (
-                  <StatusModule
-                    agentsCount={agentsCount}
-                    activeAgentsCount={activeAgentsCount}
-                  />
-                ) : (
-                  <GettingStartedModule />
-                ))}
-              {!isOnPremise() && <AnalyticsModule />}
+              <SplitModule isLoading={false} isError={false} />
+              <StatusModule activeAgentsCount={activeAgentsCount} />
+              <GettingStartedModule />
+              <AnalyticsModule />
               <LinksElement />
             </SimpleGrid>
           </VStack>

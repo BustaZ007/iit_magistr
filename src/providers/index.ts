@@ -1,3 +1,3 @@
-import ApolloClientProvider from './apollo.provider';
+import AppProvider from "./app.provider";
 
-export default ApolloClientProvider;
+export { AppProvider };

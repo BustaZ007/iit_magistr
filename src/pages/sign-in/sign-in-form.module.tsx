@@ -11,27 +11,24 @@ import {
   IconButton,
   FormErrorMessage,
   Box,
-} from '@chakra-ui/react';
-import { useTranslation } from 'react-i18next';
-import { useFormik } from 'formik';
-import { Link, useNavigate } from 'react-router-dom';
-import { At, Eye, EyeClosed, LockKey } from 'phosphor-react';
-import { useState } from 'react';
-import { PATHNAMES, VALIDATION_SCHEMAS } from '../../consts';
-import { useSignIn } from '../../domains/user';
+} from "@chakra-ui/react";
+import { useFormik } from "formik";
+import { Link, useNavigate } from "react-router-dom";
+import { At, Eye, EyeClosed, LockKey } from "phosphor-react";
+import { useState } from "react";
+import { PATHNAMES, VALIDATION_SCHEMAS } from "../../consts";
 
 export function SignInFormModule() {
-  const { t } = useTranslation();
-  const { signIn, loading, error } = useSignIn();
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
-      login: '',
-      password: '',
+      login: "",
+      password: "",
     },
     validationSchema: VALIDATION_SCHEMAS.signIn,
     onSubmit: (values) => {
-      signIn(values);
+      console.log(values);
+      navigate(PATHNAMES.dashboard);
     },
     validateOnBlur: true,
   });
@@ -45,15 +42,11 @@ export function SignInFormModule() {
     formik.handleChange(e);
   };
 
-  if (error?.message === 'InactiveUser') {
-    navigate(`${PATHNAMES.email_confirm}?mail=${formik.values.login}`);
-  }
-
   return (
     <form id="sign-in-form" onSubmit={formik.handleSubmit}>
       <Stack spacing={4} align="flex-start">
         <FormControl isInvalid={formik.touched.login && !!formik.errors.login}>
-          <FormLabel htmlFor="email">{t('common:Email')}</FormLabel>
+          <FormLabel htmlFor="email">common:Email</FormLabel>
           <InputGroup size="lg">
             <InputLeftElement pointerEvents="none">
               <Icon as={At} opacity={0.48} w="6" h="6" />
@@ -67,18 +60,13 @@ export function SignInFormModule() {
             />
           </InputGroup>
           {!!formik.errors.login && (
-            <FormErrorMessage>
-              {t(`components:errors.${formik.errors.login}`)}
-            </FormErrorMessage>
+            <FormErrorMessage>components:errors</FormErrorMessage>
           )}
         </FormControl>
         <FormControl
-          isInvalid={
-            (formik.touched.password && Boolean(formik.errors.password)) ||
-            !!error
-          }
+          isInvalid={formik.touched.password && Boolean(formik.errors.password)}
         >
-          <FormLabel htmlFor="password">{t('common:Password')}</FormLabel>
+          <FormLabel htmlFor="password">common:Password</FormLabel>
           <InputGroup size="lg">
             <InputLeftElement pointerEvents="none">
               <Icon as={LockKey} opacity={0.48} w="6" h="6" />
@@ -88,7 +76,7 @@ export function SignInFormModule() {
               id="password"
               onChange={handleInputChange}
               value={formik.values.password}
-              type={showPassword ? 'text' : 'password'}
+              type={showPassword ? "text" : "password"}
               name="password"
             />
             <InputRightElement>
@@ -96,7 +84,7 @@ export function SignInFormModule() {
                 onClick={handleChangeShowPasswordStatus}
                 size="sm"
                 variant="ghost"
-                aria-label={showPassword ? 'Mask password' : 'Reveal password'}
+                aria-label={showPassword ? "Mask password" : "Reveal password"}
                 icon={
                   showPassword ? (
                     <Icon as={Eye} w="5" h="5" />
@@ -107,37 +95,31 @@ export function SignInFormModule() {
               />
             </InputRightElement>
           </InputGroup>
-          {(formik.errors.password || error) && (
-            <FormErrorMessage>
-              {t(
-                `components:errors.${
-                  formik.errors.password ?? error?.message ?? ''
-                }`
-              )}
-            </FormErrorMessage>
+          {formik.errors.password && (
+            <FormErrorMessage>components:errors</FormErrorMessage>
           )}
         </FormControl>
         <Button
           id="recover-password-link"
           as={Link}
-          to={PATHNAMES.recovery}
+          to={PATHNAMES.dashboard}
           variant="link"
           colorScheme="blue"
           fontWeight="normal"
         >
-          {t('pages:SignIn.RecoverPassword')}
+          pages:SignIn.RecoverPassword
         </Button>
       </Stack>
       <Box pt="8">
         <Button
           type="submit"
-          isLoading={loading}
+          isLoading={false} // Fix when login will be created
           size="lg"
-          loadingText={t('pages:SignIn.SignInButton')}
+          loadingText="pages:SignIn.SignInButton"
           colorScheme="blue"
           w="full"
         >
-          {t('pages:SignIn.SignInButton')}
+          pages:SignIn.SignInButton
         </Button>
       </Box>
     </form>

@@ -4,8 +4,7 @@ import {
   Spinner,
   Alert,
   AlertIcon,
-} from '@chakra-ui/react';
-import { useTranslation } from 'react-i18next';
+} from "@chakra-ui/react";
 
 type TSplitModule = {
   isLoading: boolean;
@@ -13,9 +12,8 @@ type TSplitModule = {
 };
 
 function SplitModule({ isError, isLoading }: TSplitModule) {
-  const { t } = useTranslation('pages');
-  const bg = useColorModeValue('white', 'gray.700');
-  const boxShadow = useColorModeValue('sm', 'sm-dark');
+  const bg = useColorModeValue("white", "gray.700");
+  const boxShadow = useColorModeValue("sm", "sm-dark");
 
   return (
     <Box bg={bg} borderRadius="lg" boxShadow={boxShadow} w="100%">
@@ -28,7 +26,7 @@ function SplitModule({ isError, isLoading }: TSplitModule) {
         {isError && (
           <Alert status="error" borderRadius="lg">
             <AlertIcon />
-            {t('pages:Dashboard.Widgets.Analytic.Login')}
+            pages:Dashboard.Widgets.Analytic.Login
           </Alert>
         )}
       </Box>

@@ -1,10 +1,10 @@
-import { isLight } from './is-light.helper';
+import { isLight } from "./is-light.helper";
 
 const getContrastColorForHSLA = (color: string): string => {
   const [hue, saturation, light, alpha = 1] = color
-    .slice(color.indexOf('(') + 1, color.indexOf(')'))
-    .replace(/%/g, '')
-    .split(',');
+    .slice(color.indexOf("(") + 1, color.indexOf(")"))
+    .replace(/%/g, "")
+    .split(",");
 
   return isLight({
     hue: Number(hue),
@@ -12,8 +12,8 @@ const getContrastColorForHSLA = (color: string): string => {
     light: Number(light),
     alpha: Number(alpha),
   })
-    ? 'black'
-    : 'white';
+    ? "black"
+    : "white";
 };
 
 export default getContrastColorForHSLA;

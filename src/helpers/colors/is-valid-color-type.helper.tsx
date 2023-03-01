@@ -1,5 +1,5 @@
-import { theme } from '@chakra-ui/react';
-import { TChakraColors, TCodeSequence } from '../../consts';
+import { theme } from "@chakra-ui/react";
+import { TChakraColors, TCodeSequence } from "../../consts";
 
 // Проверка, что строка сответствует формату #ABCDEF | #abcdef | #000000
 const isValidHex = (hexColor: string): boolean => {
@@ -40,7 +40,7 @@ const isValidHSLA = (hslaColor: string): boolean => {
 };
 
 const isValidChakra = (color: string): boolean => {
-  const [colorName, code] = color.split('.') as [TChakraColors, TCodeSequence];
+  const [colorName, code] = color.split(".") as [TChakraColors, TCodeSequence];
 
   if (!theme.colors[colorName] || (code && !theme.colors[colorName][code])) {
     return false;

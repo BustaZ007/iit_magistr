@@ -5,8 +5,8 @@ import {
   HStack,
   Icon,
   As,
-} from '@chakra-ui/react';
-import { ReactNode } from 'react';
+} from "@chakra-ui/react";
+import { ReactNode } from "react";
 
 type TCard = {
   title: string;
@@ -29,7 +29,7 @@ export function Card({
       w="100%"
       border="1px"
       borderRadius="lg"
-      borderColor={useColorModeValue('gray.200', 'whiteAlpha.300')}
+      borderColor={useColorModeValue("gray.200", "whiteAlpha.300")}
     >
       <Box px="4" py="3">
         <HStack spacing="2">

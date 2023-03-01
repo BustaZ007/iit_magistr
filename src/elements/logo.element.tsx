@@ -1,13 +1,12 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { Box, chakra, Flex, Show, useColorMode } from '@chakra-ui/react';
-import logoLight from '../static/logo-light.png';
-import logoDark from '../static/logo-dark.png';
-import textLight from '../static/text-dark.png';
-import textDark from '../static/text-light.png';
+import { Box, chakra, Flex, Show, useColorMode } from "@chakra-ui/react";
+import logoLight from "../static/logo-light.png";
+import logoDark from "../static/logo-dark.png";
+import textLight from "../static/text-dark.png";
+import textDark from "../static/text-light.png";
 
 type TLogo = {
   h: number;
-  mode?: 'light' | 'dark';
+  mode?: "light" | "dark";
 };
 
 export function Logo({ h, mode = undefined }: TLogo) {
@@ -15,13 +14,13 @@ export function Logo({ h, mode = undefined }: TLogo) {
   return (
     <Flex align="flex-start">
       <chakra.img
-        src={(mode || colorMode) === 'light' ? logoLight : logoDark}
+        src={(mode || colorMode) === "light" ? logoLight : logoDark}
         h={h}
       />
       <Show above="lg">
         <Box pt={1} pl={h / 4}>
           <chakra.img
-            src={(mode || colorMode) === 'light' ? textLight : textDark}
+            src={(mode || colorMode) === "light" ? textLight : textDark}
             h={h}
           />
         </Box>

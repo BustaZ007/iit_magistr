@@ -8,10 +8,8 @@ import {
   Tag,
   TagLabel,
   Text,
-} from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { formatNumber } from '@3divi/shared-components';
+} from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 type TMenuItemElement = {
   title: string;
@@ -22,19 +20,17 @@ type TMenuItemElement = {
 };
 
 function MenuItemElement({ icon, title, to, active, count }: TMenuItemElement) {
-  const { t } = useTranslation('pages');
-
   return (
     <Box
       as={Link}
       to={to}
       w="100%"
-      px={{ base: '2.5', lg: '2' }}
+      px={{ base: "2.5", lg: "2" }}
       py="2"
       borderRadius="lg"
-      bg={active ? 'gray.700' : 'transparent'}
+      bg={active ? "gray.700" : "transparent"}
       _hover={{
-        bg: active ? 'gray.600' : 'gray.700',
+        bg: active ? "gray.600" : "gray.700",
       }}
     >
       <HStack spacing={2.5}>
@@ -43,23 +39,23 @@ function MenuItemElement({ icon, title, to, active, count }: TMenuItemElement) {
           w="6"
           h="6"
           color="white"
-          opacity={active ? '1' : '0.48'}
+          opacity={active ? "1" : "0.48"}
         />
         <Show above="lg">
           {count ? (
             <Flex justifyContent="space-between" w="full">
-              <Text color="white">{t(title)}</Text>
+              <Text color="white">{title}</Text>
               <Tag
                 size="sm"
                 borderRadius="full"
                 variant="solid"
                 colorScheme="red"
               >
-                <TagLabel>{formatNumber(count)}</TagLabel>
+                <TagLabel>{count}</TagLabel>
               </Tag>
             </Flex>
           ) : (
-            <Text color="white">{t(title)}</Text>
+            <Text color="white">{title}</Text>
           )}
         </Show>
       </HStack>

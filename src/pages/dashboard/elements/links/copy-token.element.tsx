@@ -1,16 +1,13 @@
-import { Key } from 'phosphor-react';
-import { Button, HStack, Input, useClipboard } from '@chakra-ui/react';
-import { useTranslation } from 'react-i18next';
-import { MouseEvent } from 'react';
-import { Card } from '../../section.component';
+import { Key } from "phosphor-react";
+import { Button, HStack, Input, useClipboard } from "@chakra-ui/react";
+import { MouseEvent } from "react";
+import { Card } from "../../section.component";
 
 type TCopyToken = {
   authorizeToken: string;
 };
 
 export function CopyToken({ authorizeToken }: TCopyToken) {
-  const { t } = useTranslation('pages');
-
   const { hasCopied, onCopy } = useClipboard(authorizeToken);
 
   const handleCopyClick = (e: MouseEvent<HTMLButtonElement>) => {
@@ -22,8 +19,8 @@ export function CopyToken({ authorizeToken }: TCopyToken) {
   return (
     <Card
       icon={Key}
-      title={t('Dashboard.Widgets.AuthorizationKey.Title')}
-      subtitle={t('Dashboard.Widgets.AuthorizationKey.Description')}
+      title="Dashboard.Widgets.AuthorizationKey.Title"
+      subtitle="Dashboard.Widgets.AuthorizationKey.Description"
     >
       <HStack spacing={2} w="100%" pt={2}>
         <Input
@@ -45,7 +42,7 @@ export function CopyToken({ authorizeToken }: TCopyToken) {
           fontWeight="normal"
           onClick={handleCopyClick}
         >
-          {t(`common:${hasCopied ? 'Copied' : 'Copy'}`)}
+          {hasCopied ? "Copied" : "Copy"}`
         </Button>
       </HStack>
     </Card>

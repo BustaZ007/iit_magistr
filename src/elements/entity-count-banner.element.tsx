@@ -9,11 +9,10 @@ import {
   Icon,
   StatHelpText,
   Tag,
-} from '@chakra-ui/react';
-import { IconProps } from 'phosphor-react';
-import { Link } from 'react-router-dom';
-import React from 'react';
-import { formatNumber } from '@3divi/shared-components';
+} from "@chakra-ui/react";
+import { IconProps } from "phosphor-react";
+import { Link } from "react-router-dom";
+import React from "react";
 
 type TEntityCountBanner = {
   link: string;
@@ -34,15 +33,15 @@ function EntityCountBanner({
   helpText,
   tag,
 }: TEntityCountBanner) {
-  const bg = useColorModeValue('white', 'gray.700');
-  const boxShadow = useColorModeValue('sm', 'sm-dark');
+  const bg = useColorModeValue("white", "gray.700");
+  const boxShadow = useColorModeValue("sm", "sm-dark");
 
   return (
     <Box
       as={Link}
       to={link}
       _hover={{
-        outline: '2px solid var(--chakra-colors-blue-200);',
+        outline: "2px solid var(--chakra-colors-blue-200);",
       }}
       px="4"
       pt="3"
@@ -66,7 +65,7 @@ function EntityCountBanner({
             fontWeight="light"
             lineHeight="none"
           >
-            {formatNumber(count)}
+            {count}
           </StatNumber>
           <Spacer />
           {!!tag && (

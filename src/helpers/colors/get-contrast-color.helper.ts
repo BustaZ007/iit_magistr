@@ -1,8 +1,8 @@
-import { getColorType } from './get-color-type.helper';
-import getContrastColorForChakraColor from './get-contrast-color-for-chakra-color.helper';
-import getContrastColorForHex from './get-contrast-color-for-hex.helper';
-import getContrastColorForHSLA from './get-contrasts-color-for-hsla.helper';
-import getContrastColorForRGBA from './get-contrasts-color-for-rgba.helper';
+import { getColorType } from "./get-color-type.helper";
+import getContrastColorForChakraColor from "./get-contrast-color-for-chakra-color.helper";
+import getContrastColorForHex from "./get-contrast-color-for-hex.helper";
+import getContrastColorForHSLA from "./get-contrasts-color-for-hsla.helper";
+import getContrastColorForRGBA from "./get-contrasts-color-for-rgba.helper";
 
 type TColorTypes = {
   chakra: (color: string) => string;

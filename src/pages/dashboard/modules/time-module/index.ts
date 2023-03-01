@@ -1,3 +1,3 @@
-import { TimeModule } from './time.module';
+import { TimeModule } from "./time.module";
 
 export { TimeModule };

@@ -1,7 +1,6 @@
-import { ChakraProvider } from '@chakra-ui/react';
-import { ReactElement } from 'react';
-import theme from '../theme/theme';
-import ApolloClientProvider from './apollo.provider';
+import { ChakraProvider } from "@chakra-ui/react";
+import { ReactElement } from "react";
+import theme from "../theme/theme";
 
 type AppProviderProps = {
   children: ReactElement;
@@ -9,9 +8,9 @@ type AppProviderProps = {
 
 function AppProvider({ children }: AppProviderProps) {
   return (
-    <ApolloClientProvider>
-      <ChakraProvider theme={theme}>{children}</ChakraProvider>
-    </ApolloClientProvider>
+    <ChakraProvider theme={theme} cssVarsRoot={undefined}>
+      {children}
+    </ChakraProvider>
   );
 }
 

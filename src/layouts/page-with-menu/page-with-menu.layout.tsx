@@ -23,8 +23,7 @@ function PageWithMenuLayout() {
       : !!Number(localStorage.getItem("isMenuExpanded"))
   );
   const [isMenuHovered, setMenuHoverStatus] = useState<boolean>(false);
-  const logoSize = useBreakpointValue({ base: 7, lg: 6 }) || 7;
-  const showCopyright = useBreakpointValue({ base: false, lg: true });
+  const lowSize = useBreakpointValue({ base: true, lg: false });
   const { pathname } = useLocation();
   const borderColor = useColorModeValue("gray.100", "gray.700");
 
@@ -46,7 +45,7 @@ function PageWithMenuLayout() {
       <Flex>
         <Box
           flexShrink={0}
-          w={isMenuExpanded || isMenuHovered ? "216px" : "auto"}
+          w={!lowSize && (isMenuExpanded || isMenuHovered) ? "216px" : "auto"}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           minH="14"
@@ -55,9 +54,9 @@ function PageWithMenuLayout() {
           borderColor={borderColor}
         >
           <Flex px="2" h="100%" alignItems="center">
-            <Logo h={logoSize} />
+            <Logo h={7} />
             <Spacer />
-            {(isMenuExpanded || isMenuHovered) && (
+            {!lowSize && (isMenuExpanded || isMenuHovered) && (
               <IconButton
                 icon={
                   <Icon
@@ -81,7 +80,7 @@ function PageWithMenuLayout() {
         <VStack
           h="full"
           flexShrink={0}
-          w={isMenuExpanded || isMenuHovered ? "216px" : "auto"}
+          w={!lowSize && (isMenuExpanded || isMenuHovered) ? "216px" : "auto"}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           overflowX="hidden"
@@ -103,7 +102,7 @@ function PageWithMenuLayout() {
                 icon={menuItem.icon}
                 to={menuItem.to[0]}
                 title={menuItem.title}
-                isMenuExpanded={isMenuExpanded || isMenuHovered}
+                isMenuExpanded={!lowSize && (isMenuExpanded || isMenuHovered)}
                 active={
                   !!menuItem.to.find(
                     (element) =>
@@ -113,7 +112,7 @@ function PageWithMenuLayout() {
               />
             ))}
           </VStack>
-          {showCopyright && (isMenuExpanded || isMenuHovered) && (
+          {!lowSize && (isMenuExpanded || isMenuHovered) && (
             <VStack p={2}>
               <Text fontSize="xs" textAlign="left" color="gray.600">
                 Версия 1.0.0.

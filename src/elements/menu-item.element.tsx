@@ -39,7 +39,7 @@ function MenuItemElement({
       alignItems="center"
       h="28px"
       w="100%"
-      px={{ base: "2.5", lg: "3" }}
+      px={3}
       py="1"
       borderRadius="lg"
       bg={active ? bg : "transparent"}

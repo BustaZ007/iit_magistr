@@ -1,30 +1,79 @@
-import { Box, Flex, Text, useBreakpointValue, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Icon,
+  IconButton,
+  Spacer,
+  Text,
+  useBreakpointValue,
+  useColorModeValue,
+  VStack,
+} from "@chakra-ui/react";
 import { Outlet, useLocation } from "react-router-dom";
+import { ArrowLineLeft, ArrowLineRight } from "phosphor-react";
+import { useCallback, useState } from "react";
 import { Logo, MenuItemElement } from "../../elements";
 import { HeaderModule } from "../../modules";
 import { MenuItems } from "../../consts";
 
-const FoundationYear = "2023";
 function PageWithMenuLayout() {
+  const [isMenuExpanded, setMenuExpandedStatus] = useState<boolean>(
+    localStorage.getItem("isMenuExpanded") === null
+      ? true
+      : !!Number(localStorage.getItem("isMenuExpanded"))
+  );
+  const [isMenuHovered, setMenuHoverStatus] = useState<boolean>(false);
   const logoSize = useBreakpointValue({ base: 7, lg: 6 }) || 7;
   const showCopyright = useBreakpointValue({ base: false, lg: true });
   const { pathname } = useLocation();
+  const borderColor = useColorModeValue("gray.100", "gray.700");
+
+  const handleChangeMenuStatus = useCallback(() => {
+    setMenuExpandedStatus(!isMenuExpanded);
+    localStorage.setItem("isMenuExpanded", isMenuExpanded ? "0" : "1");
+  }, [setMenuExpandedStatus, isMenuExpanded]);
+
+  const handleMouseEnter = useCallback(() => {
+    setMenuHoverStatus(true);
+  }, [setMenuHoverStatus]);
+
+  const handleMouseLeave = useCallback(() => {
+    setMenuHoverStatus(false);
+  }, [setMenuHoverStatus]);
 
   return (
     <Flex direction="column" h="100vh" maxH="100vh" overflow="hidden" w="100%">
       <Flex>
         <Box
           flexShrink={0}
-          bg="gray.800"
-          w={{ base: "auto", lg: "216px" }}
+          w={isMenuExpanded || isMenuHovered ? "216px" : "auto"}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
           minH="14"
           borderRight="1px"
           borderBottom="1px"
-          borderColor="whiteAlpha.200"
+          borderColor={borderColor}
         >
-          <Box px="4" py="3.5">
-            <Logo mode="dark" h={logoSize} />
-          </Box>
+          <Flex px="2" h="100%" alignItems="center">
+            <Logo h={logoSize} />
+            <Spacer />
+            {(isMenuExpanded || isMenuHovered) && (
+              <IconButton
+                icon={
+                  <Icon
+                    as={isMenuExpanded ? ArrowLineLeft : ArrowLineRight}
+                    w="4"
+                    h="4"
+                  />
+                }
+                aria-label=""
+                onClick={handleChangeMenuStatus}
+                variant="ghost"
+                color="current"
+                size="xs"
+              />
+            )}
+          </Flex>
         </Box>
         <HeaderModule />
       </Flex>
@@ -32,12 +81,13 @@ function PageWithMenuLayout() {
         <VStack
           h="full"
           flexShrink={0}
-          w={{ base: "auto", lg: "216px" }}
+          w={isMenuExpanded || isMenuHovered ? "216px" : "auto"}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
           overflowX="hidden"
           overflowY="auto"
-          bg="gray.800"
           borderRight="1px"
-          borderColor="whiteAlpha.200"
+          borderColor={borderColor}
         >
           <VStack
             width="full"
@@ -53,26 +103,23 @@ function PageWithMenuLayout() {
                 icon={menuItem.icon}
                 to={menuItem.to[0]}
                 title={menuItem.title}
+                isMenuExpanded={isMenuExpanded || isMenuHovered}
                 active={
                   !!menuItem.to.find(
                     (element) =>
                       element.replace(/\//g, "") === pathname.replace(/\//g, "")
                   )
                 }
-                count={23}
               />
             ))}
           </VStack>
-          <VStack p={2}>
-            <Text fontSize="xs" textAlign="left" color="gray.600">
-              Version 1.0.0 IIT Inc.
-            </Text>
-            {showCopyright && (
-              <Text fontSize="xs" color="gray.600" textAlign="center">
-                © All rights reserved bu IIT {FoundationYear}-2023
+          {showCopyright && (isMenuExpanded || isMenuHovered) && (
+            <VStack p={2}>
+              <Text fontSize="xs" textAlign="left" color="gray.600">
+                Версия 1.0.0.
               </Text>
-            )}
-          </VStack>
+            </VStack>
+          )}
         </VStack>
         <Outlet />
       </Flex>

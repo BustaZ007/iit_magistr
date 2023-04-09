@@ -8,14 +8,7 @@ enum pageName {
   "activities" = "Activities.Title",
   "persons" = "Profiles.Title",
   "billing" = "Billing.Title",
-  "settings" = "Settings.Title",
-  "settingsgroups" = "Settings.Groups.Title",
-  "settingsagents" = "Agents.Title",
-  "settingsgeneral" = "Settings.General.Title",
-  "settingstriggers" = "Settings.Triggers.Title",
-  "settingsendpoints" = "Settings.Endpoints.Title",
-  "settingsfields" = "Settings.Fields.Title",
-  "settingsintegration" = "Settings.Integration.Title",
+  "settings" = "Настройки",
 }
 
 function TitleElement() {
@@ -26,7 +19,7 @@ function TitleElement() {
   return (
     <Heading fontSize="lg" fontWeight="semibold">
       {path === ""
-        ? "Dashboard.Title"
+        ? "Домашняя страница"
         : pageName[path as keyof typeof pageName] ?? ""}
     </Heading>
   );

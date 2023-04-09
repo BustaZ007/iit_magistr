@@ -10,7 +10,7 @@ type TLogo = {
 export function Logo({ h, mode = undefined }: TLogo) {
   const { colorMode } = useColorMode();
   return (
-    <Flex align="flex-start">
+    <Flex align="flex-start" w={10}>
       <chakra.img
         src={(mode || colorMode) === "light" ? logoLight : logoDark}
         h={h}

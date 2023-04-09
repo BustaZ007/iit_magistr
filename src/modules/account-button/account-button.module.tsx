@@ -15,19 +15,19 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { SignOut, UserCircle } from "phosphor-react";
-import {
-  ChangePasswordButtonElement,
-  DeleteAccountButtonElement,
-} from "./elements";
-import { ChangePasswordModal, DeleteAccountModal } from "../../modals";
+import { useNavigate } from "react-router-dom";
+import { DeleteAccountButtonElement } from "./elements";
+import { DeleteAccountModal } from "../../modals";
+import { getGreeting } from "../../helpers";
+import { PATHNAMES } from "../../consts";
 
 function AccountButtonModule() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const pr = useBreakpointValue({ base: "0", md: "4" }) ?? "4";
   const modals = {
     delete: <DeleteAccountModal isOpen={isOpen} onClose={onClose} />,
-    changePassword: <ChangePasswordModal isOpen={isOpen} onClose={onClose} />,
   };
+  const navigate = useNavigate();
   const [currentModal, setCurrentModal] =
     useState<keyof typeof modals>("delete");
 
@@ -36,8 +36,13 @@ function AccountButtonModule() {
     onOpen();
   };
 
-  const email = "pp@pp.ru";
-
+  const email = "pp@pp.ru"; // TODO: Fix when email can be accessed
+  const greetings = {
+    morning: `Доброе утро,`,
+    day: `Добрый день,`,
+    evening: `Добрый вечер,`,
+    night: `Доброй ночи,`,
+  };
   return (
     <Box p="2" minH="14">
       <Menu>
@@ -54,8 +59,7 @@ function AccountButtonModule() {
               maxW="160px"
               noOfLines={1}
               wordBreak="break-all"
-              display="block" // по умолчанию ставится -webkit-box, из-за этого работает только в Safari
-              // display block работает во всех браузерах
+              display="block"
             >
               {email}
             </Text>
@@ -64,19 +68,14 @@ function AccountButtonModule() {
         <MenuList zIndex="popover">
           <Box px="4" pt="1" pb="1.5">
             <Text fontSize="xs" opacity={0.48}>
-              components:account.greetings
+              {greetings[getGreeting()]}
             </Text>
             <Text maxW="200px" lineHeight="shorter">
               {email}
             </Text>
           </Box>
           <MenuDivider />
-          <MenuGroup title="account.Title">
-            <ChangePasswordButtonElement
-              onOpen={() => {
-                handleOpenModal("changePassword");
-              }}
-            />
+          <MenuGroup title="Аккаунт">
             <DeleteAccountButtonElement
               onOpen={() => {
                 handleOpenModal("delete");
@@ -86,11 +85,11 @@ function AccountButtonModule() {
           <MenuDivider />
           <MenuItem
             minH="10"
-            onClick={() => console.log("logOut")}
+            onClick={() => navigate(PATHNAMES.sign_in)} // TODO: Fix after signOut can be accessed
             id="logout-button-account"
           >
             <Icon as={SignOut} w="6" h="6" mr="2" />
-            account.logOut
+            Выйти
           </MenuItem>
         </MenuList>
       </Menu>

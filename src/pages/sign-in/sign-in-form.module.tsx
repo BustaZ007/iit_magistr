@@ -13,7 +13,7 @@ import {
   Box,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { At, Eye, EyeClosed, LockKey } from "phosphor-react";
 import { useState } from "react";
 import { PATHNAMES, VALIDATION_SCHEMAS } from "../../consts";
@@ -38,15 +38,11 @@ export function SignInFormModule() {
     setShowPasswordStatus(!showPassword);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<any>) => {
-    formik.handleChange(e);
-  };
-
   return (
     <form id="sign-in-form" onSubmit={formik.handleSubmit}>
       <Stack spacing={4} align="flex-start">
         <FormControl isInvalid={formik.touched.login && !!formik.errors.login}>
-          <FormLabel htmlFor="email">common:Email</FormLabel>
+          <FormLabel htmlFor="email">Почта</FormLabel>
           <InputGroup size="lg">
             <InputLeftElement pointerEvents="none">
               <Icon as={At} opacity={0.48} w="6" h="6" />
@@ -56,17 +52,17 @@ export function SignInFormModule() {
               value={formik.values.login}
               onBlur={formik.handleBlur}
               name="login"
-              onChange={handleInputChange}
+              onChange={formik.handleChange}
             />
           </InputGroup>
           {!!formik.errors.login && (
-            <FormErrorMessage>components:errors</FormErrorMessage>
+            <FormErrorMessage>{formik.errors.login}</FormErrorMessage>
           )}
         </FormControl>
         <FormControl
           isInvalid={formik.touched.password && Boolean(formik.errors.password)}
         >
-          <FormLabel htmlFor="password">common:Password</FormLabel>
+          <FormLabel htmlFor="password">Пароль</FormLabel>
           <InputGroup size="lg">
             <InputLeftElement pointerEvents="none">
               <Icon as={LockKey} opacity={0.48} w="6" h="6" />
@@ -74,7 +70,7 @@ export function SignInFormModule() {
             <Input
               size="lg"
               id="password"
-              onChange={handleInputChange}
+              onChange={formik.handleChange}
               value={formik.values.password}
               type={showPassword ? "text" : "password"}
               name="password"
@@ -96,30 +92,20 @@ export function SignInFormModule() {
             </InputRightElement>
           </InputGroup>
           {formik.errors.password && (
-            <FormErrorMessage>components:errors</FormErrorMessage>
+            <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
           )}
         </FormControl>
-        <Button
-          id="recover-password-link"
-          as={Link}
-          to={PATHNAMES.dashboard}
-          variant="link"
-          colorScheme="blue"
-          fontWeight="normal"
-        >
-          pages:SignIn.RecoverPassword
-        </Button>
       </Stack>
       <Box pt="8">
         <Button
           type="submit"
-          isLoading={false} // Fix when login will be created
+          isLoading={false} // TODO: Fix when login will be created
           size="lg"
           loadingText="pages:SignIn.SignInButton"
           colorScheme="blue"
           w="full"
         >
-          pages:SignIn.SignInButton
+          Войти
         </Button>
       </Box>
     </form>

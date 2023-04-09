@@ -2,18 +2,18 @@ import * as yup from "yup";
 
 const email = yup
   .string()
-  .email("InvalidEmail")
-  .max(150, "MaxLengthField")
-  .required("IsRequired");
+  .email("Введите корректный Email")
+  .max(150, "Введите менее 150 симоволов")
+  .required("Это поле обязательно");
 
 const password = yup
   .string()
-  .min(8, "MinLengthPassword")
-  .max(150, "MaxLengthField")
-  .required("IsRequired");
+  .min(8, "Введите более 8 симоволов")
+  .max(150, "Введите менее 150 симоволов")
+  .required("Это поле обязательно");
 
 const confirmNewPassword = password.oneOf(
-  [yup.ref("newPassword"), null],
+  [yup.ref("newPassword")],
   "PasswordsDontMatch"
 );
 

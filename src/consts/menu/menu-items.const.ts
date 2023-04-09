@@ -1,4 +1,4 @@
-import { HouseSimple, IconProps } from "phosphor-react";
+import { Gear, HouseSimple, IconProps } from "phosphor-react";
 import { PATHNAMES } from "..";
 
 type TMenuItem = {
@@ -21,7 +21,7 @@ MenuItems.push({
 MenuItems.push({
   title: "TestPage",
   to: ["/test"],
-  icon: HouseSimple,
+  icon: Gear,
   exact: true,
 });
 

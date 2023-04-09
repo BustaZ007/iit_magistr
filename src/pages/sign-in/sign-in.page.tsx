@@ -53,7 +53,7 @@ export function SignInPage() {
               lg: "58%",
             }}
           >
-            <Logo h={8} />
+            <Logo h={7} />
             <Spacer />
             <ColorModeSwitcher />
           </HStack>
